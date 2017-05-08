@@ -47,7 +47,7 @@ def makeWebhookResult(req):
 	else:
 		for i in list1:
 			if i in list2:
-    			speech = "The book of " + author  + " is " + i +"."
+		speech = "The book of " + author  + " is " + i +"."
 
 
     return {
