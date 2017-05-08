@@ -14,29 +14,29 @@ app = Flask(__name__)
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
-    req = request.get_json(silent=True, force=True)
+	req = request.get_json(silent=True, force=True)
 
-    print("Request:")
-    print(json.dumps(req, indent=4))
+	print("Request:")
+	print(json.dumps(req, indent=4))
 
-    res = makeWebhookResult(req)
+	res = makeWebhookResult(req)
 
-    res = json.dumps(res, indent=4)
-    print(res)
-    r = make_response(res)
-    r.headers['Content-Type'] = 'application/json'
-    return r
+	res = json.dumps(res, indent=4)
+	print(res)
+	r = make_response(res)
+	r.headers['Content-Type'] = 'application/json'
+	return r
 
 def makeWebhookResult(req):
-    if req.get("result").get("action") != "book_choice":
-        return {}
-    result = req.get("result")
-    parameters = result.get("parameters")
-    author=parameters.get("author")
-    genre=parameters.get("genre")
+	if req.get("result").get("action") != "book_choice":
+		return {}
+	result = req.get("result")
+	parameters = result.get("parameters")
+	author=parameters.get("author")
+	genre=parameters.get("genre")
 
-    # zone = parameters.get("shipping-zone")
-    # cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
+	# zone = parameters.get("shipping-zone")
+	# cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
 
 	book_genre={'Tragedy':['Macbeth'],'Comedy':['As you like it','Tim Diamond'],'Mystery':['House of Silk','Feluda']} 
 	book_author={'Shakespeare':['Macbeth','As you like it'],'Satyajit':['Feluda'],'Anthony':['Tim Diamond','House of Silk']}  
@@ -47,21 +47,21 @@ def makeWebhookResult(req):
 	else:
 		for i in list1:
 			if i in list2:
-		speech = "The book of " + author  + " is " + i +"."
+				speech = "The book of " + author  + " is " + i +"."
 
 
-    return {
-        "speech": speech,
-        "displayText": speech,
-        #"data": {},
-        # "contextOut": [],
-        "source": "apiai-onlinestore-shipping"
-    }
+	return {
+		"speech": speech,
+		"displayText": speech,
+		#"data": {},
+		# "contextOut": [],
+		"source": "apiai-onlinestore-shipping"
+	}
 
 
 if __name__ == '__main__':
-    port = int(os.getenv('PORT', 5000))
+	port = int(os.getenv('PORT', 5000))
 
-    print "Starting app on port %d" % port
+	print("Starting app on port %d" % port)
 
-    app.run(debug=True, port=port, host='0.0.0.0')
+	app.run(debug=True, port=port, host='0.0.0.0')
