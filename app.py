@@ -28,18 +28,27 @@ def webhook():
     return r
 
 def makeWebhookResult(req):
-    if req.get("result").get("action") != "shipping.cost":
+    if req.get("result").get("action") != "book_choice":
         return {}
     result = req.get("result")
     parameters = result.get("parameters")
-    zone = parameters.get("shipping-zone")
+    author=parameters.get("author")
+    genre=parameters.get("genre")
 
-    cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
+    # zone = parameters.get("shipping-zone")
+    # cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
 
-    speech = "The cost of shipping to " + zone + " is " + str(cost[zone]) + " euros."
+	book_genre={'Tragedy':['Macbeth'],'Comedy':['As you like it','Tim Diamond'],'Mystery':['House of Silk','Feluda']} 
+	book_author={'Shakespeare':['Macbeth','As you like it'],'Satyajit':['Feluda'],'Anthony':['Tim Diamond','House of Silk']}  
+	list1=book_genre[genre]
+	list2=book_author[author]
+	if len(list1)==0 or len(list2)==0:
+		speech="No book of "+ author +"of the "+genre +"is available"
+	else:
+		for i in list1:
+			if i in list2:
+    			speech = "The book of " + author  + " is " + i +"."
 
-    print("Response:")
-    print(speech)
 
     return {
         "speech": speech,
