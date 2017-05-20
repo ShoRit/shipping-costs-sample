@@ -28,6 +28,7 @@ def webhook():
 	return r
 
 def makeWebhookResult(req):
+	'''
 	if req.get("result").get("action") == 'get_action':
 		result=req.get("result")
 		parameters=result.get("parameters")
@@ -78,7 +79,7 @@ def makeWebhookResult(req):
 		# "contextOut": [],
 		"source": "apiai-onlinestore-shipping"
 		}
-
+	'''
 
 	if req.get("result").get("action") != "book_choice":
 		return {}
