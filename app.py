@@ -58,9 +58,10 @@ def makeWebhookResult(req):
 			speech=speech+"Here you go. My mail id is : mailme@anirbansaha.com\n"	
 		elif contact_id2=="number":
 			speech=speech+"My contact number is: 1234567890\n"
-		else contact_id2=="contact":
+		elif contact_id2=="contact":
 			speech=speech+"My email is mailme@anirbansaha.com and my phone number is 1234567890\n"
-		
+		else:	
+			speech=speech+""
 
 		if "mail" in need_id:
 			speech=speech+"No mailid for you\n"	
