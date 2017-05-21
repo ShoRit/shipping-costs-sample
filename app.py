@@ -37,7 +37,7 @@ def makeWebhookResult(req):
 				"displayText": speech,
 				"data": {},
 				"contextOut": [],
-				"source": "apiai-onlinestore-shipping"
+				"source": "webhook"
 			}	
 
 			result=req.get("result")
@@ -67,7 +67,7 @@ def makeWebhookResult(req):
 				"displayText": speech,
 				"data": {},
 				"contextOut": [],
-				"source": "apiai-onlinestore-shipping"
+				"source": "webhook"
 			}	
 
 			speech="speech\n"	
