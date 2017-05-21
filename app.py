@@ -68,7 +68,9 @@ def makeWebhookResult(req):
 		elif "number" in need_id:
 			speech=speech+"No phone number for you\n"
 		elif "contact" in need_id:
-			speech=speech+"No contact for you\n"			
+			speech=speech+"No contact for you\n"
+		else:
+			speech=speech+""				
 
 		return 
 		{
