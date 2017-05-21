@@ -30,7 +30,16 @@ def webhook():
 def makeWebhookResult(req):
 	try:
 		if req.get("result").get("action") == 'get_action':
-			speech="At the very beginning\n"
+			speech="At the very beginning\n"+req.get("result").get("action")+"\n"
+			return 
+			{
+				"speech": speech,
+				"displayText": speech,
+				#"data": {},
+				# "contextOut": [],
+				"source": "apiai-onlinestore-shipping"
+			}	
+
 			result=req.get("result")
 			parameters=result.get("parameters")
 			try:
