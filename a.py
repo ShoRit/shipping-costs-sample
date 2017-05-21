@@ -20,7 +20,7 @@ contact_id2="number"
 need_id=""
 
 
-speech=""	
+speech="speech"	
 if contact_id=="mail":
 	speech=speech+"Here you go. My mail id is : mailme@anirbansaha.com\n"	
 elif contact_id=="number":
