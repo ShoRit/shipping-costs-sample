@@ -82,7 +82,8 @@ def makeWebhookResult(req):
 				"source": "apiai-onlinestore-shipping"
 			}
 		else:
-			speech="I am flag one in get_action module\n"
+			
+			speech="I am flag one in get_action module\n"+str(req.get("result").get("action"))
 			return {
 				"speech": speech,
 				"displayText": speech,
