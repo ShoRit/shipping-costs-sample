@@ -30,20 +30,36 @@ def webhook():
 def makeWebhookResult(req):
 	try:
 		if req.get("result").get("action") == 'get_action':
+			speech="At the very beginning\n"
 			result=req.get("result")
 			parameters=result.get("parameters")
 			try:
 				contact_id=parameters.get("contact_types")
+				speech=speech+contact_id+"\n"
 			except:
 				contact_id=""
+				speech=speech+"1\n"
 			try:		
 				need_id=parameters.get("no_need")
+				speech=speech+need_id+"\n"
 			except:
 				need_id=""
+				speech=speech+"2\n"
 			try:		
 				contact_id2=parameters.get("contact_types1")
+				speech=speech+contact_id2+"\n"
 			except:
-				contact_id2=""	
+				contact_id2=""
+				speech=speech+"3\n"	
+
+			return 
+			{
+				"speech": speech,
+				"displayText": speech,
+				#"data": {},
+				# "contextOut": [],
+				"source": "apiai-onlinestore-shipping"
+			}	
 
 			speech="speech\n"	
 			if contact_id=="mail":
