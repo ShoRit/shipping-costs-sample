@@ -80,6 +80,16 @@ def makeWebhookResult(req):
 		# "contextOut": [],
 		"source": "apiai-onlinestore-shipping"
 		}
+	else:
+		speech="I am a Pikachu\n"
+		return 
+		{
+		"speech": speech,
+		"displayText": speech,
+		#"data": {},
+		# "contextOut": [],
+		"source": "apiai-onlinestore-shipping"
+		}
 
 	if req.get("result").get("action") != "book_choice":
 		return {}
