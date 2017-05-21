@@ -75,22 +75,33 @@ def makeWebhookResult(req):
 
 			return 
 			{
+				"speech": speech,
+				"displayText": speech,
+				#"data": {},
+				# "contextOut": [],
+				"source": "apiai-onlinestore-shipping"
+			}
+		else:
+			speech="I am flag one in get_action module\n"
+			return {
+				"speech": speech,
+				"displayText": speech,
+				#"data": {},
+				# "contextOut": [],
+				"source": "apiai-onlinestore-shipping"
+			}
+
+				
+	except Exception as error:
+		#speech=str(error)
+		speech="I am a Pikachu inside error module \n"
+		return 
+		{
 			"speech": speech,
 			"displayText": speech,
 			#"data": {},
 			# "contextOut": [],
 			"source": "apiai-onlinestore-shipping"
-			}
-	except Exception as error:
-		speech=str(error)
-		# speech="I am a Pikachu\n"
-		return 
-		{
-		"speech": speech,
-		"displayText": speech,
-		#"data": {},
-		# "contextOut": [],
-		"source": "apiai-onlinestore-shipping"
 		}
 
 	if req.get("result").get("action") != "book_choice":
@@ -112,7 +123,7 @@ def makeWebhookResult(req):
 	else:
 		for i in list1:
 			if i in list2:
-				speech = "The book of " + author  + " is " + i +"."
+				speech = "The book of " + author  + " is " + i +".\n. I wish I died sooner\n"
 
 
 	return {
