@@ -96,8 +96,7 @@ def makeWebhookResult(req):
 			flag+=1	
 			print("Speech:"+'\t'+speech+'\t'+"flag:"+'\t'+str(flag))
 
-			return 
-			{
+			return {
 				"speech": speech,
 				"displayText": speech,
 				"data": {},
