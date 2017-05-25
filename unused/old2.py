@@ -60,28 +60,24 @@ def makeWebhookResult(req):
 
 			speech="speech\n"	
 			if contact_id=="mail":
-				speech="Sure Stay connected.\n"
 				speech=speech+"Here you go. My mail id is : mailme@anirbansaha.com\n"	
 			elif contact_id=="number":
-				speech="Sure Stay connected.\n"
-				speech=speech+"My contact number is: +91 9903055542\n"
+				speech=speech+"My contact number is: 1234567890\n"
 			elif contact_id=="contact":
-				speech="Sure Stay connected.\n"
-				speech=speech+"My email is mailme@anirbansaha.com and my phone number is +91 9903055542\n"
+				speech=speech+"My email is mailme@anirbansaha.com and my phone number is 1234567890\n"
 			else:
-				speech=""
+				speech=speech+""
 
 			flag+=1	
 			print("Speech:"+'\t'+speech+'\t'+"flag:"+'\t'+str(flag))
 
 			
 			if contact_id2=="mail":
-
 				speech=speech+"Here you go. My mail id is : mailme@anirbansaha.com\n"	
 			elif contact_id2=="number":
-				speech=speech+"My contact number is: +91 9903055542\n"
+				speech=speech+"My contact number is: 1234567890\n"
 			elif contact_id2=="contact":
-				speech=speech+"My email is mailme@anirbansaha.com and my phone number is +91 9903055542\n"
+				speech=speech+"My email is mailme@anirbansaha.com and my phone number is 1234567890\n"
 			else:	
 				speech=speech+""
 
@@ -89,13 +85,13 @@ def makeWebhookResult(req):
 			print("Speech:"+'\t'+speech+'\t'+"flag:"+'\t'+str(flag))	
 
 			if "mail" in need_id:
-				speech="Have a nice day\n"
+				speech=speech+"No mailid for you\n"	
 			elif "number" in need_id:
-				speech="Have a nice day\n"
+				speech=speech+"No phone number for you\n"
 			elif "contact" in need_id:
-				speech="Have a nice day\n"
+				speech=speech+"No contact for you\n"
 			else:
-				speech="Have a nice day\n"
+				speech=speech+""				
 
 			flag+=1	
 			print("Speech:"+'\t'+speech+'\t'+"flag:"+'\t'+str(flag))
@@ -108,28 +104,60 @@ def makeWebhookResult(req):
 				"source": "apiai-onlinestore-shipping"
 			}
 		else:
-			return{}
-			# speech="I am flag one in get_action module\n"+str(req.get("result").get("action"))
-			# return {
-			# 	"speech": speech,
-			# 	"displayText": speech,
-			# 	#"data": {},
-			# 	# "contextOut": [],
-			# 	"source": "apiai-onlinestore-shipping"
-			# }
+			
+			speech="I am flag one in get_action module\n"+str(req.get("result").get("action"))
+			return {
+				"speech": speech,
+				"displayText": speech,
+				#"data": {},
+				# "contextOut": [],
+				"source": "apiai-onlinestore-shipping"
+			}
 
 				
 	except Exception as error:
 		#speech=str(error)
 		speech="I am inside error module \n"
 		print("Speech:"+'\t'+speech+'\t'+"flag:"+'\t'+str(flag))
-		return {
+		return 
+		{
 			"speech": speech,
 			"displayText": speech,
 			#"data": {},
 			# "contextOut": [],
 			"source": "apiai-onlinestore-shipping"
 		}
+
+	if req.get("result").get("action") != "book_choice":
+		return {}
+	result = req.get("result")
+	parameters = result.get("parameters")
+	author=parameters.get("author")
+	genre=parameters.get("genre")
+
+	# zone = parameters.get("shipping-zone")
+	# cost = {'Europe':100, 'North America':200, 'South America':300, 'Asia':400, 'Africa':500}
+
+	book_genre={'Tragedy':['Macbeth'],'Comedy':['As you like it','Tim Diamond'],'Mystery':['House of Silk','Feluda']} 
+	book_author={'Shakespeare':['Macbeth','As you like it'],'Satyajit':['Feluda'],'Anthony':['Tim Diamond','House of Silk']}  
+	list1=book_genre[genre]
+	list2=book_author[author]
+	if len(list1)==0 or len(list2)==0:
+		speech="No book of "+ author +"of the "+genre +"is available"
+	else:
+		for i in list1:
+			if i in list2:
+				speech = "The book of " + author  + " is " + i +".\n. I wish I died sooner\n"
+
+
+	return {
+		"speech": speech,
+		"displayText": speech,
+		#"data": {},
+		# "contextOut": [],
+		"source": "apiai-onlinestore-shipping"
+	}
+
 
 if __name__ == '__main__':
 	port = int(os.getenv('PORT', 5000))
