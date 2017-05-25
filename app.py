@@ -89,13 +89,13 @@ def makeWebhookResult(req):
 			print("Speech:"+'\t'+speech+'\t'+"flag:"+'\t'+str(flag))	
 
 			if "mail" in need_id:
-				speech="Have a nice day\n"
+				speech=speech+"\nHave a nice day\n"
 			elif "number" in need_id:
-				speech="Have a nice day\n"
+				speech=speech+"\nHave a nice day\n"
 			elif "contact" in need_id:
-				speech="Have a nice day\n"
+				speech=speech+"\nHave a nice day\n"
 			else:
-				speech="Have a nice day\n"
+				speech=speech+"\nHave a nice day\n"
 
 			flag+=1	
 			print("Speech:"+'\t'+speech+'\t'+"flag:"+'\t'+str(flag))
